@@ -2,5 +2,5 @@ development:
   adapter: postgresql
   database: mwed_tutorial
   username: postgres
-  password:
-  host: localhost
+  password: password
+  host: 192.168.100.104
