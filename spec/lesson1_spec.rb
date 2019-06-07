@@ -1,5 +1,11 @@
 require "spec_helper"
 
 describe "Lesson1" do
-  it { expect(Item.create(name: "お菓子")).to be_truthy }
+  context "Create Item" do
+    before do
+      Item.create(name: "お菓子")
+    end
+
+    it { expect(Item.count).to eq 1 }
+  end
 end
