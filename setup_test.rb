@@ -1,10 +1,10 @@
 require "active_record"
 Dir["./models/*.rb"].each {|file| require file }
 
-config = YAML.load_file("#{File.dirname(__FILE__)}/config/database.yml")
+puts "check Settings..."
+config = YAML.load_file("#{File.dirname(__FILE__)}/config/databas.yml")
 ActiveRecord::Base.establish_connection(config['development'])
-
+puts "database setup success🎉"
 items = Item.all
 categories = Category.all
-puts items.count
-puts categories.count
+puts "success of Settings🎉"
