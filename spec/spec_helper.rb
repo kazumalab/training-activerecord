@@ -2,8 +2,10 @@ require "active_record"
 require "database_cleaner"
 require "active_support/all"
 require "active_support/testing/time_helpers"
+require "pry"
 
 Dir[File.join(File.dirname(__FILE__), "..", "models", "*.rb")].each{|f| require_relative f }
+Dir[File.join(File.dirname(__FILE__), "helpers", "*.rb")].each{|f| require_relative f }
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -25,6 +27,8 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  config.include OutputSqlHelper
 
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
   # have no way to turn it off -- the option exists only for backwards
