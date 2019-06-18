@@ -1,17 +1,29 @@
 require "spec_helper"
 
 describe "Lesson1" do
-  it "アイテムを生成" do
-    only_sql do
-      ActiveRecord::Base.transaction do
-        Item.create(name: "hoge")
-      end
+  it "リレーション先からデータを取得" do
+    # チョコレートカテゴリ
+    category_choco = Category.create(name: "チョコレート")
+    ["チロルチョコ", "キットカット", "アルフォート"].each do |item_name|
+      category_choco.items.create(name: item_name)
     end
 
-    expect(Item.count).to eq 1
-  end
+    # スナック菓子
+    category_snack = Category.create(name: "スナック菓子")
+    ["ポテトチップス", "チップスター", "ベビースター"].each do |item_name|
+      category_snack.items.create(name: item_name)
+    end
 
-  it "アイテムを生成するが失敗" do
-    expect(Item.count).to eq 0
+    items = Item.all
+    items.each do |item|
+      category = item.category
+      puts category.name
+    end
+
+    items = Item.includes(:category).all
+    items.each do |item|
+      category = item.category
+      puts category.name
+    end
   end
 end

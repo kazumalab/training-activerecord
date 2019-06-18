@@ -7,6 +7,7 @@ require "pry"
 Dir[File.join(File.dirname(__FILE__), "..", "models", "*.rb")].each{|f| require_relative f }
 Dir[File.join(File.dirname(__FILE__), "helpers", "*.rb")].each{|f| require_relative f }
 
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
@@ -37,8 +38,10 @@ RSpec.configure do |config|
   # triggering implicit auto-inclusion in groups with matching metadata.
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
-  config = YAML.load_file('config/database.yml')
+  config = YAML.load_file("config/database.yml")
   ActiveRecord::Base.establish_connection(config['development'])
+
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
