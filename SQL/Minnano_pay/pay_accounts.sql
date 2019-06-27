@@ -1,4 +1,4 @@
 CREATE TABLE pay_accounts (
-  id int PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   user_id int REFERENCES users
 );
