@@ -1,5 +1,5 @@
 CREATE TABLE send_histories (
-  id int,
+  id int serial PRIMARY KEY,
   date datetime,
   user_id int REFERENCES users,
   following_user_id int REFERENCES users,

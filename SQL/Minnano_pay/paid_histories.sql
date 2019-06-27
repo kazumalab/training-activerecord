@@ -1,5 +1,5 @@
 CREATE TABLE paid_histories (
-  id int PRIMARY KEY,
+  id int serial PRIMARY KEY,
   date datetime,
   place_id int REFERENCES places,
   trading_id int REFERENCES tradings,
